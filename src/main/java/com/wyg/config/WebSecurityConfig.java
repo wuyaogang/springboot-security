@@ -31,7 +31,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Autowired
     UserDetailsService customUserService;
 
+    /**
+     * 任何应用考虑到安全，绝不能明文的方式保存密码。
+     * 密码应该通过哈希算法进行加密。有很多标准的算法比如SHA或者MD5，
+     * 结合salt(盐)是一个不错的选择。
+     * Spring Security 提供了BCryptPasswordEncoder类,实现Spring的PasswordEncoder接口使用BCrypt强哈希方法来加密密码。
 
+     BCrypt强哈希方法 每次加密的结果都不一样。
+     * @param auth
+     * @throws Exception
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(customUserService).passwordEncoder(new BCryptPasswordEncoder()); //user Details Service验证

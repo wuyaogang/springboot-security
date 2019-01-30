@@ -15,6 +15,13 @@ import javax.annotation.Resource;
 public class SysUserServiceImpl implements ISysUserService{
     @Resource
     private SysUserMapper sysUserMapper;
+
+    /**
+     * 虽然每次 BCryptPasswordEncoder 的 encoder 结果都不一样，但是存贮其中一次加密结果 也能够验证成功
+     * 这里是加密方式
+     * @param record
+     * @return
+     */
     @Override
     public int addUser(SysUser record) {
         //进行加密
