@@ -1,7 +1,7 @@
 CREATE TABLE `sys_user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `username` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '姓名',
-  `password` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '密码',
+  `password` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '密码',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

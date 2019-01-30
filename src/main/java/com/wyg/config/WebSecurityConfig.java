@@ -1,5 +1,7 @@
 package com.wyg.config;
 
+import com.wyg.component.MyAccessAuthenticationEntryPoint;
+import com.wyg.component.MyAccessDeniedHandler;
 import com.wyg.service.auto.MyFilterSecurityInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +13,8 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 
 /**
@@ -30,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserService); //user Details Service验证
+        auth.userDetailsService(customUserService).passwordEncoder(new BCryptPasswordEncoder()); //user Details Service验证
 
     }
     //在这里配置哪些页面不需要认证
@@ -62,6 +66,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .rememberMe()
                 .tokenValiditySeconds(1209600);
         http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
+        //添加自定义异常入口，处理accessdeine异常
+        http.exceptionHandling().authenticationEntryPoint(new MyAccessAuthenticationEntryPoint())
+                .accessDeniedHandler(new MyAccessDeniedHandler());
 
     }
 }

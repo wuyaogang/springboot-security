@@ -1,6 +1,8 @@
 package com.wyg.web;
 
+import com.wyg.po.SysUser;
 import com.wyg.po.User;
+import com.wyg.service.ISysUserService;
 import com.wyg.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -19,6 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 public class HelloController {
     @Autowired
     private IUserService userService;
+    @Autowired
+    private ISysUserService sysUserService;
     @RequestMapping(value= "/hello", method= RequestMethod.GET)
     public String hello(){
         return "hello world!";
@@ -37,6 +41,15 @@ public class HelloController {
         user.setName("zhangsan");
         user.setAge(17);
        int num = this.userService.addUser(user);
+        return num;
+    }
+
+    @RequestMapping(value= "/sysAdd", method= RequestMethod.GET)
+    public int add(){
+        SysUser user = new SysUser();
+        user.setUsername("zhangsan");
+        user.setPassword("123456");
+        int num = this.sysUserService.addUser(user);
         return num;
     }
 }
