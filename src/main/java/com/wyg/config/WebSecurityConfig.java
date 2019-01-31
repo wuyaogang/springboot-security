@@ -47,16 +47,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
     }
     //在这里配置哪些页面不需要认证
-    /*@Override
+   /* @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/css*//**", "/templates*//**");
+        web.ignoring().antMatchers("/","/css**//**", "/templates**//**");
     }*/
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 // 所有用户均可访问的资源
                 .antMatchers("/","/css/**","/login","/templates/**").permitAll()
-                //.anyRequest().authenticated() //任何请求,登录后可以访问
+                .anyRequest().authenticated() //任何请求,登录后可以访问
                 .and()
                 .formLogin()
                 .loginPage("/login")

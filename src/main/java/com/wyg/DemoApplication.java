@@ -1,6 +1,6 @@
 package com.wyg;
 
-import org.apache.tomcat.jdbc.pool.DataSource;
+import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
 //http://archive.apache.org/dist/tomcat/tomcat-connectors/native/
 
 /**
@@ -26,6 +27,7 @@ import javax.persistence.EntityManagerFactory;
 @EnableTransactionManagement //添加事务管理 在需要事务的类上加上@Transactional就可以了
 @SpringBootApplication
 @MapperScan("com.wyg.dao")
+@EnableEncryptableProperties
 public class DemoApplication implements TransactionManagementConfigurer{
 	@Resource(name="txManager1")
 	private PlatformTransactionManager txManager1;
