@@ -43,4 +43,6 @@ public interface UserMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(User record);
+
+    int importUser(User user);
 }

@@ -56,4 +56,10 @@
     select id, `name`, age
     from user
   </select>
+
+  <insert id="importUser" parameterType="com.wyg.po.User">
+
+    INSERT INTO user(name)
+    VALUES(#{name})
+  </insert>
 </mapper>

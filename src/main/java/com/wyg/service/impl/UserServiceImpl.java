@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by A14857 on 2019/1/23.
@@ -25,4 +26,22 @@ public class UserServiceImpl implements IUserService{
 
         return userMapper.insert(record);
     }
+
+    /**
+     * 导入User
+     * @param objects
+     */
+    @Override
+    public void importUser(List<User> objects) {
+        for (User user : objects) {
+            userMapper.importUser(user);
+        }
+    }
+
+    @Override
+    public List<User> selectAll() {
+        return userMapper.selectAll();
+    }
+
+
 }
