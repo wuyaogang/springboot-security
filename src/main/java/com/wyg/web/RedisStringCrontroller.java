@@ -1,5 +1,7 @@
 package com.wyg.web;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
@@ -15,12 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/redis")
 public class RedisStringCrontroller {
+    private Log log = LogFactory.getLog(RedisStringCrontroller.class);
     @Autowired
     private StringRedisTemplate redisTemplate;
     @GetMapping("/setget.html")
     public String env(String key, String data){
         redisTemplate.opsForValue().set(key,data);
         String str = redisTemplate.opsForValue().get(key);
+        log.info("str="+str);
         return str;
     }
 
