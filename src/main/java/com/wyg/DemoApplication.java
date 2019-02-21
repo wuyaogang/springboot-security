@@ -10,6 +10,7 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
@@ -49,7 +50,10 @@ public class DemoApplication implements TransactionManagementConfigurer{
 	public PlatformTransactionManager annotationDrivenTransactionManager() {
 		return txManager1;
 	}
-
+	@Bean
+	public RestTemplate restTemplate(){
+		return new RestTemplate();
+	}
 	public static void main(String[] args) {
 		/**
 		 * SpringApplication实例初始化：
