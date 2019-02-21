@@ -13,7 +13,7 @@ public class SpringCloudController {
     @Autowired
     private RestTemplate restTemplate;
     //http://localhost:8080/redis/setget.html?data=test&key=test
-     @GetMapping("/setget.json")
+     @GetMapping("/api/setget.json")
     public String env(String key, String data){
         String str =  restTemplate.getForObject("http://localhost:8082/redis/setget.html?key="+key+"&data="+data,String.class);
         return str;

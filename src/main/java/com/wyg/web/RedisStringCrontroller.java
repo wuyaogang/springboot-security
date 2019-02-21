@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by A14857 on 2019/2/18.
  */
 @RestController
-@RequestMapping("/redis")
+@RequestMapping("/api/redis")
 public class RedisStringCrontroller {
     private Log log = LogFactory.getLog(RedisStringCrontroller.class);
     @Autowired

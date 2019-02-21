@@ -55,7 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 // 所有用户均可访问的资源
-                .antMatchers("/","/css/**","/login","/templates/**").permitAll()
+                .antMatchers("/","/css/**","/login","/templates/**","/api/**").permitAll()
                 .anyRequest().authenticated() //任何请求,登录后可以访问
                 .and()
                 .formLogin()
